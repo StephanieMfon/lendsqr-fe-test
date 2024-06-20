@@ -1,0 +1,66 @@
+.container {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 16px;
+  border: 1px solid var(--Primary-Colour-110, #e6f2f5);
+  background: #fff;
+  overflow-x: scroll;
+  box-shadow: 0px 4px 20px 0px #e6f2f5;
+}
+
+.container table {
+  border-collapse: collapse;
+  width: 100%;
+  color: #545f7d;
+  padding: 1rem;
+}
+
+.container tr th div {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+.container th {
+  text-align: left;
+  padding-block: 1rem;
+}
+.container th span {
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 600;
+  color: #545f7dec;
+  font-size: 14px;
+}
+.container tbody tr {
+  border-bottom: 1px solid #213f7d1a;
+}
+
+.container tr:last-child {
+  border-bottom: none;
+}
+
+.container tr td {
+  letter-spacing: 1px;
+  text-wrap: nowrap;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 16.42px;
+  padding-block: 2.1rem;
+}
+
+/* TODO: Remember to remove or change these */
+.completed_status {
+  background: var(--Alerts-Warning, #fd6f23bd);
+}
+.pending_status {
+  background: var(--Alerts-Error, #ff2e2ec2);
+}
+.blocked {
+  background: var(--Alerts-Error, #ff2e2e7c);
+}
+
+@media (max-width: 750px) {
+  .download_button {
+    display: none;
+  }
+}

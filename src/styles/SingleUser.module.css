@@ -1,0 +1,191 @@
+.container {
+  padding: 4rem 5rem 10rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  background-color: #fbfbfb;
+  box-shadow: inset 0px 5px 13px -1px #c7c7c72f,
+    /* top shadow */ inset 5px 0px 13px -1px #c7c7c70e; /* left shadow */
+}
+.top_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  color: var(--primary-blue);
+}
+
+.back {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: #545f7d;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.header_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header {
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 28.15px;
+  letter-spacing: 1px;
+}
+
+.header_content_buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.9rem;
+  letter-spacing: 2px;
+}
+.blacklist {
+  padding: 1rem;
+  border: 1px solid #39cdcc;
+  color: #39cdcc;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 16.42px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.activate {
+  padding: 1rem;
+  border: 1px solid #e4033b;
+  color: #e4033b;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 16.42px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.info_box {
+  padding: 2.6rem 1.8rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  border: 1px solid #213f7d0f;
+  background-color: var(--white);
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  border-radius: 4px;
+}
+
+.info_box_top {
+  display: flex;
+}
+
+.info_box_item {
+  padding: 2.5rem;
+  border-right: 1px solid #545f7d81;
+  max-height: 80px;
+}
+
+.info_box_item:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.info_box_item:nth-child(1) div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.bold {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 25.81px;
+  letter-spacing: 1.5px;
+}
+.code {
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16.42px;
+  color: #545f7d;
+}
+
+.info_box_item:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.user_tier_title {
+  letter-spacing: 1px;
+
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 16.42px;
+  /* TODO: If theres time add these color to variables , add all popular colors to variables once converted to sass */
+  color: #545f7d;
+}
+.user_tier_title + div {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.info_box_item:nth-child(3) {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  border-right: none;
+}
+
+.bank_details {
+  letter-spacing: 0.8px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 14.08px;
+}
+.info_box_bottom {
+  display: flex;
+  justify-content: space-between;
+  /* Look for sf compact text and add it to the 
+  font specially like you added the one on the sign up page */
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 19.09px;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing: 1px;
+  color: #000000;
+  margin-left: 2rem;
+}
+.info_box_bottom span {
+  padding-bottom: 0.8rem;
+  width: 190px;
+}
+
+.info_box_bottom span:first-child {
+  color: #39cdcc;
+  border-bottom: 2px solid #39cdcc;
+}
+/* Bottom Section */
+.bottom_wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem 1.4rem 2rem 1.4rem;
+  border: 1px solid #213f7d0f;
+  box-shadow: 3px 5px 20px 0px #0000000a;
+  background-color: var(--white);
+}
+.user_item_wrapper {
+  border-bottom: 1px solid #21407d3d;
+  padding-block: 1.5rem;
+}
+.user_item_wrapper:last-child {
+  border-bottom: none;
+}
