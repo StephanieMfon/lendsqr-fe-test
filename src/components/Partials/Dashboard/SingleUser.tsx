@@ -6,6 +6,15 @@ import { apiClient } from "@/utilities/apiClient";
 import { USER_DATA, USER_INFO_CATEGORIES_MENU } from "@/utilities/data";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const DynamicUserInfoGrid = dynamic(
+  () => import("@/components/Dashboard/User-Info-Grid"),
+  {
+    ssr: false,
+    // loading: () => <Loader />,
+  }
+);
 
 const SingleUser = ({ id }: { id: string }) => {
   const { isLoading, isError, isFetching, data } = useQuery(
@@ -23,7 +32,6 @@ const SingleUser = ({ id }: { id: string }) => {
     //   },
     // }
   );
-  console.log(data);
 
   return (
     <div className={styles.container}>
@@ -86,16 +94,7 @@ const SingleUser = ({ id }: { id: string }) => {
         </div>
       </div>
       <div className={styles.bottom_wrapper}>
-        {/* {USER_DATA.map((item, index) => (
-          <div key={index} className={styles.user_item_wrapper}> */}
-        <UserInfoGrid
-          data={data}
-          // items={item.items}
-          // itemsPerRow={item.max_items}
-          // header={item.header}
-        />
-        {/* </div>
-        ))} */}
+        <DynamicUserInfoGrid data={data} />
       </div>
     </div>
   );

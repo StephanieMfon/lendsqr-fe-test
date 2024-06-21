@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import { Pages } from "./Navlinks";
 import styles from "./navbar.module.css";
-import React from "react";
+import React, { memo } from "react";
+
+import Image from "next/image";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaHamburger } from "react-icons/fa";
-import Image from "next/image";
 
 function NavBar() {
   const [width, setWidth] = useState<number>(0);
@@ -33,7 +34,6 @@ function NavBar() {
       {width > 750 ? (
         <Pages setMenuOpen={setMenuOpen} />
       ) : (
-        // <div></div>
         <div className={styles.menu}>
           <div
             onClick={() => {
@@ -54,8 +54,9 @@ function NavBar() {
           {menuOpen ? <Pages setMenuOpen={setMenuOpen} /> : null}
         </div>
       )}
+      <Pages setMenuOpen={setMenuOpen} />
     </div>
   );
 }
 
-export default NavBar;
+export default memo(NavBar);
