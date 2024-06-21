@@ -23,27 +23,23 @@ function Sidebar({ children }: { children: React.ReactNode }) {
 
       <div className={styles.left_sidebar}>
         <div className={`${styles.sub_item} ${styles.highlight}`}>
-          <SidebarIcon name="karma" />
-          {/* TODO: Add the correct icon to the sidebar */}
+          <SidebarIcon name="organization" />
           <span className={styles.sub_item_title}>Switch Organization</span>
           <SidebarIcon name="highlight-dropdown" />
         </div>
 
         <div className={styles.sub_item}>
-          <SidebarIcon name="karma" />
+          <SidebarIcon name="dashboard" />
           <span className={styles.sub_item_title}>Dashboard</span>
         </div>
         {SIDE_NAV_DATA.map((item, index) => (
           <div className={styles.menu_item} key={index}>
             <span className={styles.subject}>{item.subject}</span>
             <div className={styles.sub_items}>
-              {item.subitems.map((subitem, subindex) => (
+              {item.subitems.map(({ subitem, icon }, subindex) => (
                 <div className={styles.sub_item} key={subindex}>
-                  <SidebarIcon name="users" />
-                  {/* TODO: Add the correct icon to the sidebar */}
-                  <span className={styles.sub_item_title}>
-                    {subitem.subitem}
-                  </span>
+                  <SidebarIcon name={icon} />
+                  <span className={styles.sub_item_title}>{subitem}</span>
                 </div>
               ))}
             </div>
