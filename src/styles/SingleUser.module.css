@@ -2,10 +2,11 @@
   padding: 4rem 5rem 10rem 5rem;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   gap: 3rem;
   background-color: #fbfbfb;
   box-shadow: inset 0px 5px 13px -1px #c7c7c72f,
-    /* top shadow */ inset 5px 0px 13px -1px #c7c7c70e; /* left shadow */
+    inset 5px 0px 13px -1px #c7c7c70e;
 }
 .top_wrapper {
   display: flex;
@@ -41,6 +42,7 @@
   gap: 0.9rem;
   letter-spacing: 2px;
 }
+
 .blacklist {
   padding: 1rem;
   border: 1px solid #39cdcc;
@@ -66,7 +68,9 @@
   background-color: var(--white);
   border-radius: 8px;
 }
-
+.avatar {
+  border-radius: 999px;
+}
 .info_box {
   padding: 2.6rem 1.8rem 0 0.5rem;
   display: flex;
@@ -153,8 +157,6 @@
 .info_box_bottom {
   display: flex;
   justify-content: space-between;
-  /* Look for sf compact text and add it to the 
-  font specially like you added the one on the sign up page */
   font-size: 17px;
   font-weight: 400;
   line-height: 19.09px;
@@ -175,8 +177,10 @@
 }
 /* Bottom Section */
 .bottom_wrapper {
+  color: #545f7d;
   display: flex;
   flex-direction: column;
+  gap: 2.2rem;
   padding: 1.4rem 1.4rem 2rem 1.4rem;
   border: 1px solid #213f7d0f;
   box-shadow: 3px 5px 20px 0px #0000000a;

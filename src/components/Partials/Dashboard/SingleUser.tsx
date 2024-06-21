@@ -1,10 +1,30 @@
+"use client";
 import UserInfoGrid from "@/components/Dashboard/User-Info-Grid";
 import { DashboardIcon } from "@/components/Ui/MainDashboardIcons";
 import styles from "@/styles/SingleUser.module.css";
+import { apiClient } from "@/utilities/apiClient";
 import { USER_DATA, USER_INFO_CATEGORIES_MENU } from "@/utilities/data";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 const SingleUser = ({ id }: { id: string }) => {
+  const { isLoading, isError, isFetching, data } = useQuery(
+    {
+      queryKey: ["users", id],
+      queryFn: () =>
+        apiClient.get(`/users/${id}`).then((res) => {
+          return res?.data;
+        }),
+    }
+    // {
+    //   enabled: !localStorage.hasOwnProperty(`user_detail_${id}`),
+    //   onSuccess: (data) => {
+    //     localStorage.setItem(`user_detail_${id}`, JSON.stringify(data));
+    //   },
+    // }
+  );
+  console.log(data);
+
   return (
     <div className={styles.container}>
       <div className={styles.top_wrapper}>
@@ -25,9 +45,13 @@ const SingleUser = ({ id }: { id: string }) => {
         <div className={styles.info_box}>
           <div className={styles.info_box_top}>
             <div className={styles.info_box_item}>
-              <DashboardIcon name="profile-avatar" />
+              <img
+                className={styles.avatar}
+                src={data?.profile.avatar}
+                alt={data?.userName}
+              />
               <div>
-                <span className={styles.bold}>Grace Effiom</span>
+                <span className={styles.bold}>{data?.userName}</span>
                 <span className={styles.code}>LSQFf587g90</span>
               </div>
             </div>
@@ -42,7 +66,7 @@ const SingleUser = ({ id }: { id: string }) => {
             </div>
 
             <div className={styles.info_box_item}>
-              <span className={styles.bold}>₦200,000.00</span>
+              <span className={styles.bold}>₦{data?.accountBalance}</span>
               <span className={styles.bank_details}>
                 9912345678/Providus Bank{" "}
               </span>
@@ -62,15 +86,16 @@ const SingleUser = ({ id }: { id: string }) => {
         </div>
       </div>
       <div className={styles.bottom_wrapper}>
-        {USER_DATA.map((item, index) => (
-          <div key={index} className={styles.user_item_wrapper}>
-            <UserInfoGrid
-              items={item.items}
-              itemsPerRow={item.max_items}
-              header={item.header}
-            />
-          </div>
-        ))}
+        {/* {USER_DATA.map((item, index) => (
+          <div key={index} className={styles.user_item_wrapper}> */}
+        <UserInfoGrid
+          data={data}
+          // items={item.items}
+          // itemsPerRow={item.max_items}
+          // header={item.header}
+        />
+        {/* </div>
+        ))} */}
       </div>
     </div>
   );

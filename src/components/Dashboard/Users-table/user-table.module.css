@@ -1,11 +1,11 @@
 .container {
   width: 100%;
   padding: 10px 20px;
-  border-radius: 16px;
-  border: 1px solid var(--Primary-Colour-110, #e6f2f5);
-  background: #fff;
+  border: 1px solid #213f7d0f;
   overflow-x: scroll;
-  box-shadow: 0px 4px 20px 0px #e6f2f5;
+  border-radius: 4px;
+  background-color: var(--white);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
 }
 
 .container table {
@@ -22,7 +22,7 @@
 }
 .container th {
   text-align: left;
-  padding-block: 1rem;
+  padding: 1rem;
 }
 .container th span {
   text-transform: uppercase;
@@ -45,18 +45,17 @@
   font-size: 16px;
   font-weight: 300;
   line-height: 16.42px;
-  padding-block: 2.1rem;
+  padding: 2.1rem 1rem;
 }
-
-/* TODO: Remember to remove or change these */
-.completed_status {
-  background: var(--Alerts-Warning, #fd6f23bd);
+.container tr td:hover {
+  cursor: pointer;
 }
-.pending_status {
-  background: var(--Alerts-Error, #ff2e2ec2);
-}
-.blocked {
-  background: var(--Alerts-Error, #ff2e2e7c);
+.container tr td span {
+  background: rgba(57, 205, 98, 0.06);
+  border-radius: 100px;
+  padding: 6px 14px;
+  text-transform: capitalize;
+  color: #39cd62;
 }
 
 @media (max-width: 750px) {

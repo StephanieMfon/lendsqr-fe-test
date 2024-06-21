@@ -1,13 +1,11 @@
 import React from "react";
-import styles from "./table.module.css";
+import styles from "./user-table.module.css";
 import { DashboardIcon } from "@/components/Ui/MainDashboardIcons";
-import { USERS } from "@/utilities/data";
-// import { Stack } from "@mui/material";
-// import { downloadProjectsCSV } from "@/repositories/ProjectsRepository";
-// import { dateFormatter } from "@/utilities/dateConfig";
-// import { statusFormatter } from "@/utilities/routes";
+import { formatDate } from "@/utilities/formatDate";
+import { useRouter } from "next/navigation";
 
-const ProjectsTable = ({ projectsData }: any) => {
+const UsersTable = ({ usersData }: any) => {
+  const router = useRouter();
   return (
     <div className={styles.container}>
       <table>
@@ -44,38 +42,22 @@ const ProjectsTable = ({ projectsData }: any) => {
           </tr>
         </thead>
         <tbody>
-          {USERS?.map(
-            (
-              {
-                organization,
-                username,
-                email,
-                phoneNumber,
-                dateJoined,
-                status,
-              }: any,
-              id: number
-            ) => {
+          {usersData?.map(
+            ({ orgName, userName, email, phoneNumber, createdAt, id }: any) => {
               return (
-                <tr key={id}>
-                  <td>{organization}</td>
+                <tr
+                  key={id}
+                  onClick={() => router.push(`/dashboard/user/${id}`)}
+                >
+                  <td>{orgName}</td>
 
-                  <td>{username}</td>
+                  <td>{userName}</td>
                   <td>{email}</td>
                   <td>{phoneNumber}</td>
-                  <td>{dateJoined}</td>
-                  <td>{status}</td>
-                  {/* <td>
-                    <button
-                      className={`${styles.button} ${
-                        status === "not-started" && styles.completed_status
-                      } ${status === "on-hold" && styles.pending_status} ${
-                        status === "blocked" && styles.blocked
-                      }`}
-                    >
-                      {statusFormatter(status)} green
-                    </button>
-                  </td> */}
+                  <td>{formatDate(createdAt)}</td>
+                  <td>
+                    <span>Active</span>
+                  </td>
                   <td>
                     <DashboardIcon name="vertical-dots" />
                   </td>
@@ -89,4 +71,4 @@ const ProjectsTable = ({ projectsData }: any) => {
   );
 };
 
-export default ProjectsTable;
+export default UsersTable;

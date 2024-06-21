@@ -1,6 +1,7 @@
 .container {
   padding: 4rem 5rem 10rem 5rem;
   display: flex;
+  min-height: 100vh;
   flex-direction: column;
   gap: 3rem;
   background-color: #fbfbfb;
@@ -22,6 +23,75 @@
   letter-spacing: 1px;
 }
 
+/* pagination */
+
+/* .users-paginate {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 23px;
+	color: $textPrimary;
+	font-size: 14px;
+	@include breakpointMobile {
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+	}
+	.user-page-info {
+		span {
+			padding: 7px 10px;
+			color: $bluePrimary;
+			font-weight: 500;
+			background-color: rgba(33, 63, 125, 0.1);
+			border-radius: 4px;
+			img {
+				margin-left: 10px;
+			}
+		}
+	}
+} */
+.users_paginate {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 23px;
+  color: #545f7d;
+  font-size: 14px;
+  /* @include breakpointMobile {
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+	} */
+}
+.users_page_info span {
+  padding: 9px 13px;
+  color: var(--primary-blue);
+  font-weight: 500;
+  background-color: rgba(33, 63, 125, 0.1);
+  border-radius: 4px;
+}
+.pagination {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+.active {
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+.page_ink {
+  cursor: pointer;
+}
+.arrow {
+  cursor: pointer;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(33, 63, 125, 0.1);
+  border-radius: 4px;
+}
 @media (max-width: 750px) {
   .search_and_filter {
     flex-direction: column;

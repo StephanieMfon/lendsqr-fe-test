@@ -1,4 +1,6 @@
 type SidebarIconType =
+  | "orgainization"
+  | "dashboard"
   | "users"
   | "guarantors"
   | "loans"

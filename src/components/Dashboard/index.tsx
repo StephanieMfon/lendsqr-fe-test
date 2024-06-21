@@ -1,36 +1,51 @@
+"use client";
 import styles from "./dashboard.module.css";
 import ProgressCards from "./Progress-card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Shared/Loader";
-import ProjectsTable from "./Projects-table";
 import { userStats } from "@/utilities/data";
-
-// export const getTableData = async () => {
-//   const [summaryResponse, tableResponse] = await Promise.all([
-//     ProjectsRepository.countByStatus(),
-//     ProjectsRepository.getProjects(),
-//   ]);
-
-//   return { summaryResponse, tableResponse };
-// };
+import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "@/utilities/apiClient";
+import UsersTable from "./Users-table";
+import ReactPaginate from "react-paginate";
+import { DashboardIcon } from "../Ui/MainDashboardIcons";
 const Dashboard = () => {
-  const [tableData, setTableData] = useState([]);
-  const [summaryData, setSummaryData] = useState([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [pagination, setPagination] = useState({
+    pageCount: 0,
+    itemOffset: 0,
+    currentItems: [],
+    itemsPerPage: 10,
+  });
 
-  // const getComponentData = async () => {
-  //   setLoading(true);
-  //   const { summaryResponse, tableResponse } = await getTableData();
-  //   setSummaryData(summaryResponse?.data?.data?.projects);
-  //   setTableData(tableResponse?.data?.data.projects);
-  //   setLoading(false);
-  // };
+  const {
+    isLoading,
+    isError,
+    data: users,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => apiClient.get("/users").then((res) => res.data), // specify the query function here
+  });
+  console.log(users);
 
-  // useEffect(() => {
-  //   getComponentData();
-  // }, []);
-  // TODO: Remember to delete all the svgs in dashboard public folder
-  if (loading) return <Loader />;
+  useEffect(() => {
+    if (users) {
+      const endOffset = pagination.itemOffset + pagination.itemsPerPage;
+      setPagination((prev) => ({
+        ...prev,
+        currentItems: users.slice(prev.itemOffset, endOffset),
+        pageCount: Math.ceil(users.length / prev.itemsPerPage),
+      }));
+    }
+  }, [pagination.itemOffset, pagination.itemsPerPage, users]);
+
+  const handlePageClick = (event: any) => {
+    const newOffset = (event.selected * pagination.itemsPerPage) % users.length;
+    setPagination((prev) => ({
+      ...prev,
+      itemOffset: newOffset,
+    }));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.dashboard_top}>
@@ -40,7 +55,37 @@ const Dashboard = () => {
       </div>
 
       {/* Project Table */}
-      <ProjectsTable projectsData={tableData} />
+      <div>
+        <UsersTable usersData={pagination.currentItems} />
+        <div className={styles.users_paginate}>
+          <div className={styles.users_page_info}>
+            <p>
+              Showing{" "}
+              <span>
+                {pagination.itemOffset + pagination.itemsPerPage}{" "}
+                <DashboardIcon name="down-arrow" />
+              </span>{" "}
+              out of {users?.length}
+            </p>
+          </div>
+          <ReactPaginate
+            nextLabel=">"
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={pagination.pageCount}
+            previousLabel="<"
+            pageClassName={styles.page_item}
+            pageLinkClassName={styles.page_link}
+            previousClassName={styles.arrow}
+            nextClassName={styles.arrow}
+            breakLabel="..."
+            containerClassName={styles.pagination}
+            activeClassName={styles.active}
+            // renderOnZeroPageCount={null}
+          />
+        </div>
+      </div>
     </div>
   );
 };
